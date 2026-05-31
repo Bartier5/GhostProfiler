@@ -5,12 +5,12 @@ load_dotenv()
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 DB_PATH="ghostprofiler.db"
-Timezone = "Afica/Lagos"
+TIMEZONE = "Africa/Lagos"
 
 GROQ_MODEL = "llama3-70b-8192"
 MIN_MESSAGES_FOR_ANALYSIS = 10
 
-WEEKLY_REPORT_DAY = "sunday"
+WEEKLY_REPORT_DAY = "sun"
 WEEKLY_REPORT_TIME = "08:00"
 MONTHLY_REPORT_DAY = 1
 
