@@ -68,17 +68,21 @@ async def profile_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     await update.message.reply_text("running your profile. give me a second.")
     
-    messages = await get_user_messages(user.id, days=30)
-    
-    report = await generate_and_save_report(
-        user_id=user.id,
-        messages=messages,
-        report_type="manual",
-        save_func=save_report
-    )
-    
-    await update.message.reply_text(report)
-
+    try:
+        messages = await get_user_messages(user.id, days=30)
+        await update.message.reply_text(f"fetched {len(messages)} messages.")
+        
+        report = await generate_and_save_report(
+            user_id=user.id,
+            messages=messages,
+            report_type="manual",
+            save_func=save_report
+        )
+        await update.message.reply_text(f"report generated. sending now.")
+        await update.message.reply_text(report)
+        
+    except Exception as e:
+        await update.message.reply_text(f"something broke: {str(e)}")
 
 async def clear_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
