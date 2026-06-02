@@ -79,16 +79,19 @@ def generate_ghost_report(analysis: dict, report_type: str = "weekly") -> str:
         model=GROQ_MODEL,
         messages=[{"role": "user", "content": prompt}],
         max_tokens=1000,
-        temperature=0.85
+        temperature=0.85,
+        timeout=30.0
     )
     
     return response.choices[0].message.content
+import asyncio
 async def generate_and_save_report(user_id: int, messages: list, 
                                     report_type: str, save_func) -> str:
     if len(messages) < 10:
         return "not enough data yet. keep talking."
     
     analysis = compile_analysis(messages)
+    await asyncio.sleep(2)
     report = generate_ghost_report(analysis, report_type)
     
     await save_func(user_id, report_type, report)
