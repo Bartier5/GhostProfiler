@@ -7,7 +7,7 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 DB_PATH="ghostprofiler.db"
 TIMEZONE = "Africa/Lagos"
 
-GROQ_MODEL = "llama3-70b-8192"
+GROQ_MODEL = "llama-3.3-70b-versatile"
 MIN_MESSAGES_FOR_ANALYSIS = 10
 
 WEEKLY_REPORT_DAY = "sun"
